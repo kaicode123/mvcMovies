@@ -1,0 +1,36 @@
+# First - delete TLS ingress
+kubectl delete -f ingress-with-tls-prod.yaml
+
+
+# register an app with Azure AD
+# Follow instruction on 160 of Kube_on_Azure
+
+# Install oauth2-proxy
+# Edit parameter in oauth2_deployment.yaml
+kubectl create -f oauth2_deployment.yaml
+
+# Expose oauth2-proxy as a service so that the ingress can talk to it:
+kubectl create oauth2_service.yaml
+
+#Create Ingress so that any URL goes to http://myapp-ingress.southeastasia.cloudapp.azure.com/ will be rediected to the oauth2-proxy-service.
+kubectl create -f ./oauth2_ingress.yaml
+
+
+#Finally, we will link the oauth2 proxy to the front-end service by creating an
+Ingress that configures nginx so that authentication is checked using the paths
+in auth-url and auth-signin. If the request is not authenticated, traffic is sent to
+the oauth2_proxy. If it is successfully authenticated, the traffic is redirected to the
+back-end service (in our case, it is the front-end service).
+
+#Line 5: As mentioned previously, the Ingress object can be backed by multiple
+technologies (such as NGINX or Application Gateway). The Ingress object has
+a syntax to configure basic tasks, such as hosts and paths, but it doesn't have a
+configuration for authentication redirects, for example. Annotations are used
+by multiple Ingress providers to pass detailed configuration data to the Ingress
+provider in the back end.
+
+#Lines 7-8: This configures our Ingress to send non-authenticated requests to
+these URLs.
+
+kubectl create -f frontend-oauth2-ingress.yaml
+

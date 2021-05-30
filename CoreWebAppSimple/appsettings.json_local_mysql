@@ -1,0 +1,13 @@
+﻿{
+  "Logging": {
+    "IncludeScopes": false,
+    "LogLevel": {
+      "Default": "Warning"
+    }
+  },
+  "ConnectionStrings": {
+     
+	 "DefaultConnection": "server=localhost;port=33060;database=sakila;user=root;password=my_password;"
+  }
+
+}

@@ -1,0 +1,47 @@
+
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: StatefulSet
+metadata:
+  name: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  serviceName: mysql 
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - image: mysql:5.6
+        name: mysql
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+         #  value: 1Q2w3e4r5t6y
+            valueFrom: 
+              secretKeyRef:
+               name: mysql-secrets
+               key: root-password
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+        - name: datadb
+          mountPath: /data123/datadb
+     #  lifecycle:
+     #    postStart:
+     #      exec:
+     #        command: ['mysql', '-uroot', '-p1Q2w3e4r5t6y', '<', '/data/datadb/schema.sql']
+     #        command: ['mysql', '-uroot', '-p1Q2w3e4r5t6y', '<', '/data/datadb/film-data.sql']
+                
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: azure-managed-disk-e 
+      - name: datadb
+        configMap:    
+         name: backupdb  
+

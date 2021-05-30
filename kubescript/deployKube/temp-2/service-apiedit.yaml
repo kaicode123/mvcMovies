@@ -1,0 +1,20 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app:  apiedit
+    tier: api
+  annotations:
+    
+  name: apiedit
+spec:
+  ports:
+  - port: 7774
+    protocol: TCP
+    targetPort: 7774
+  selector:
+    app: apiedit
+    tier: api
+  type: ClusterIP
+  

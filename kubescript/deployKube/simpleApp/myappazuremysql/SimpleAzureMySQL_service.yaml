@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app:  frontendazuremysql
+    tier: frontend
+  name: frontendazuremysql
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: frontendazuremysql
+    tier: frontend
+  type: ClusterIP

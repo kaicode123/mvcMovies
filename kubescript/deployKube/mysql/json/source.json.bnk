@@ -1,0 +1,9 @@
+{
+	"userName": "root",
+	"password": null,
+	"serverName": "localmachine.southeastasia.cloudapp.azure.com",
+	"databaseName": "movies",
+	"port": 3306
+}
+
+

@@ -1,0 +1,34 @@
+﻿@using Microsoft.Extensions.FileProviders
+@model IDirectoryContents
+
+@{
+    ViewData["Title"] = "About";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<p>Time Now in Server: @DateTime.Now.ToString()</p>
+<p>Name of the Server: @Environment.MachineName</p>
+<p>OS of the Server: @Environment.OSVersion</p>
+<p>Current Directory: @Environment.CurrentDirectory</p>
+<p> System Directory: @Environment.SystemDirectory</p>
+<p>Network Domain Name: @Environment.UserDomainName</p>
+<p>Physical Memory Mapped: @Environment.WorkingSet.ToString()</p>
+<br />
+
+
+<h2>ASP.NET Core Web App Folder Content</h2>
+
+<ul>
+    @foreach (IFileInfo item in Model)
+    {
+        if (item.IsDirectory)
+        {
+            <li><strong>@item.Name</strong> - Directory</li>
+        }
+        else
+        {
+            <li><strong>@item.Name</strong> - @item.PhysicalPath </li>
+        }
+    }
+</ul>  

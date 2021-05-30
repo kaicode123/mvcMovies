@@ -1,0 +1,48 @@
+apiVersion: apps/v1 #  for k8s versions before 1.9.0 use apps/v1beta2  and before 1.8.0 use extensions/v1beta1
+kind: Deployment
+metadata:
+  name: frontendazuremysql
+spec:
+  selector:
+    matchLabels:
+      app:  frontendazuremysql
+      tier: frontend
+ ## ----- Manually configure a number of replicas to 3
+  replicas: 1
+ ## ----- Default confguration. A number of replicas is 1
+ #replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  frontendazuremysql
+        tier: frontend
+    spec:
+      containers:
+      - name: frontendazuremysql
+        image: kaiacr.azurecr.io/myappgeneral:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 110m
+            memory: 192Mi
+        env:
+        - name: GET_HOSTS_FROM
+          value: dns
+          # If your cluster config does not include a dns service, then to
+          # instead access environment variables to find service host
+          # info, comment out the 'value: dns' line above, and uncomment the
+          # line below:
+          # value: env
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: appsettings-json
+          mountPath: /app/appsettings.json
+          subPath: appsettings.json
+      volumes:
+      - name: appsettings-json
+        configMap:
+         name: appsettings-json-azuremysql
+

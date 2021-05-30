@@ -1,0 +1,5 @@
+# Change external-ip address to external ip address of myapp
+hey -z 20m http://<external-ip>
+
+# to monitor hpa
+kubectl get hpa -w

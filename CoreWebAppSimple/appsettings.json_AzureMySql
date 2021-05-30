@@ -1,0 +1,13 @@
+﻿{
+  "Logging": {
+    "IncludeScopes": false,
+    "LogLevel": {
+      "Default": "Warning"
+    }
+  },
+  "ConnectionStrings": {
+     
+	  "DefaultConnection": "Server=kaimysqlserver123.mysql.database.azure.com; Port=3306; Database=sakila; Uid=kaiadmin@kaimysqlserver123; Pwd=1Q2w3e4r5t6y; SslMode=Preferred;"
+  }
+
+}

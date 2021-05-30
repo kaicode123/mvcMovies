@@ -1,0 +1,62 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "services_dms_001_name": {
+            "defaultValue": "dms-001",
+            "type": "String"
+        },
+        "virtualNetworks_vnet_001_externalid": {
+            "defaultValue": "/subscriptions/66ebb9bd-c60f-44c6-8d3c-5db1bb5e3800/resourceGroups/rg-001/providers/Microsoft.Network/virtualNetworks/vnet-001",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.DataMigration/services",
+            "apiVersion": "2017-11-15-privatepreview",
+            "name": "[parameters('services_dms_001_name')]",
+            "location": "southeastasia",
+            "sku": {
+                "name": "Premium_4vCores",
+                "tier": "Premium",
+                "size": "4 vCores"
+            },
+            "kind": "Cloud",
+            "properties": {
+                "virtualSubnetId": "[concat(parameters('virtualNetworks_vnet_001_externalid'), '/subnets/localmachinesubnet')]"
+            }
+        },
+        {
+            "type": "Microsoft.DataMigration/services/projects",
+            "apiVersion": "2017-11-15-privatepreview",
+            "name": "[concat(parameters('services_dms_001_name'), '/dmsproject-001')]",
+            "location": "southeastasia",
+            "dependsOn": [
+                "[resourceId('Microsoft.DataMigration/services', parameters('services_dms_001_name'))]"
+            ],
+            "properties": {
+                "sourcePlatform": "MySQL",
+                "targetPlatform": "AzureDbForMySQL",
+                "sourceConnectionInfo": {
+                    "serverName": "23.97.58.205",
+                    "port": 3306,
+                    "userName": "root",
+                    "type": "MySqlConnectionInfo"
+                },
+                "targetConnectionInfo": {
+                    "serverName": "mysqlxx001.mysql.database.azure.com",
+                    "port": 0,
+                    "userName": "mysqladmin001@mysqlxx001",
+                    "type": "MySqlConnectionInfo"
+                },
+                "databasesInfo": [
+                    {
+                        "sourceDatabaseName": "movies"
+                    }
+                ]
+            }
+        }
+    ]
+}

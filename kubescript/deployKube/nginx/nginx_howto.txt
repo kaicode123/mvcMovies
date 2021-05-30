@@ -1,0 +1,28 @@
+# Install nignx with helm
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm repo update
+helm install ingress ingress-nginx/ingress-nginx
+
+
+###########################################################################################
+#to Fix error: upstream sent too big header while reading response header from upstream
+kubectl exec -it pod/ingress-nginx-ingress-controller-855c77d4bb-js7xd bash
+nano nginx.conf
+Then add the following to all:
+ proxy_buffering                         on;
+ proxy_buffer_size                       128k;
+ proxy_buffers                           4 128k;
+
+Then# reload nginx
+nginx -s reload
+
+finally, exit shell of docker
+##########################################################################################
+#to Fix error mentioned above with script. 
+Edit Pod ID of nginx. Then run script
+
+
+#########################################################################################
+# Once complete, add FQDN to public IP of nginx on Azure Portal
+

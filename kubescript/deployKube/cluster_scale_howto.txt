@@ -1,0 +1,3 @@
+## Excute command below:
+
+az aks nodepool update --enable-cluster-autoscaler -g rg-handsonaks --cluster-name handsonaks --name agentpool --min-count 1 --max-count 3

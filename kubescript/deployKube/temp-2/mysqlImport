@@ -1,0 +1,2 @@
+#!/bin/bash
+mysql -umysqladminb@mysqlxxb -p1Q2w3e4r5t6y -h mysqlxxb.mysql.database.azure.com < /workspace/SimpleDotnetMysql/kubescript/deployKube/mysql/moives.sql

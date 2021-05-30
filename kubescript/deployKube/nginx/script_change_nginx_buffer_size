@@ -1,0 +1,5 @@
+
+kubectl exec -it pod/ingress-nginx-ingress-controller-855c77d4bb-nbrm6 -- sed -i 's/proxy_buffering                         off/proxy_buffering                         on/g' nginx.conf
+kubectl exec -it pod/ingress-nginx-ingress-controller-855c77d4bb-nbrm6 -- sed -i 's/proxy_buffer_size                       4k/proxy_buffer_size                       128k/g' nginx.conf
+kubectl exec -it pod/ingress-nginx-ingress-controller-855c77d4bb-nbrm6 -- sed -i 's/proxy_buffers                           4 4k/proxy_buffers                           4 128k/g' nginx.conf
+kubectl exec -it pod/ingress-nginx-ingress-controller-855c77d4bb-nbrm6 -- nginx -s reload

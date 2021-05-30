@@ -1,0 +1,20 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app:  apidetail
+    tier: api
+  annotations:
+    
+  name: apidetail
+spec:
+  ports:
+  - port: 7772
+    protocol: TCP
+    targetPort: 7772
+  selector:
+    app: apidetail
+    tier: api
+  type: ClusterIP
+  

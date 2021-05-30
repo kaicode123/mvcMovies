@@ -1,0 +1,16 @@
+
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "MvcMovieContext": "Server=mysqlxxb.mysql.database.azure.com; Port=3306; Database=movies; Uid=mysqladminb@mysqlxxb; Pwd=1Q2w3e4r5t6y; SslMode=Preferred;"
+  },
+  "urls": "http://0.0.0.0:7774"
+}
+

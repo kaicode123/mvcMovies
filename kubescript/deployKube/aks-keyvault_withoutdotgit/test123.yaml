@@ -1,0 +1,17 @@
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentity
+metadata:
+  name: identity-aks-kv
+spec:
+  type: 0
+  resourceID: /subscriptions/e40fb554-c275-43ed-895f-f427a4e3f02c/resourcegroups/MC_rg-demoo01111_aks-demoo01111_southeastasia/providers/Microsoft.ManagedIdentity/userAssignedIdentities/aks-demoo01111-agentpool
+
+  clientID: 25231ce6-584e-4bc5-8eb1-7a33300d5357
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentityBinding
+metadata:
+  name: identity-aks-kv-binding
+spec:
+  azureIdentity: identity-aks-kv
+  selector: azure-kv

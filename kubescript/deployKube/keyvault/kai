@@ -1,0 +1,114 @@
+{
+  "aadProfile": null,
+  "addonProfiles": {
+    "KubeDashboard": {
+      "config": null,
+      "enabled": true,
+      "identity": null
+    },
+    "azurePolicy": {
+      "config": null,
+      "enabled": false,
+      "identity": null
+    },
+    "httpApplicationRouting": {
+      "config": null,
+      "enabled": false,
+      "identity": null
+    },
+    "omsagent": {
+      "config": {
+        "logAnalyticsWorkspaceResourceID": "/subscriptions/e40fb554-c275-43ed-895f-f427a4e3f02c/resourcegroups/defaultresourcegroup-sea/providers/microsoft.operationalinsights/workspaces/defaultworkspace-e40fb554-c275-43ed-895f-f427a4e3f02c-sea"
+      },
+      "enabled": true,
+      "identity": null
+    }
+  },
+  "agentPoolProfiles": [
+    {
+      "availabilityZones": null,
+      "count": 1,
+      "enableAutoScaling": false,
+      "enableNodePublicIp": null,
+      "maxCount": null,
+      "maxPods": 110,
+      "minCount": null,
+      "mode": "System",
+      "name": "agentpool",
+      "nodeImageVersion": "AKSUbuntu-1604-2020.09.03",
+      "nodeLabels": {},
+      "nodeTaints": null,
+      "orchestratorVersion": "1.17.11",
+      "osDiskSizeGb": 128,
+      "osType": "Linux",
+      "provisioningState": "Succeeded",
+      "proximityPlacementGroupId": null,
+      "scaleSetEvictionPolicy": null,
+      "scaleSetPriority": null,
+      "spotMaxPrice": null,
+      "tags": null,
+      "type": "VirtualMachineScaleSets",
+      "upgradeSettings": {
+        "maxSurge": null
+      },
+      "vmSize": "Standard_B2s"
+    }
+  ],
+  "apiServerAccessProfile": {
+    "authorizedIpRanges": null,
+    "enablePrivateCluster": false
+  },
+  "autoScalerProfile": null,
+  "diskEncryptionSetId": null,
+  "dnsPrefix": "handsonaks-dns",
+  "enablePodSecurityPolicy": null,
+  "enableRbac": true,
+  "fqdn": "handsonaks-dns-2ba76edb.hcp.southeastasia.azmk8s.io",
+  "id": "/subscriptions/e40fb554-c275-43ed-895f-f427a4e3f02c/resourcegroups/rg-handsonaks/providers/Microsoft.ContainerService/managedClusters/handsonaks",
+  "identity": null,
+  "identityProfile": null,
+  "kubernetesVersion": "1.17.11",
+  "linuxProfile": null,
+  "location": "southeastasia",
+  "maxAgentPools": 10,
+  "name": "handsonaks",
+  "networkProfile": {
+    "dnsServiceIp": "10.0.0.10",
+    "dockerBridgeCidr": "172.17.0.1/16",
+    "loadBalancerProfile": {
+      "allocatedOutboundPorts": null,
+      "effectiveOutboundIps": [
+        {
+          "id": "/subscriptions/e40fb554-c275-43ed-895f-f427a4e3f02c/resourceGroups/MC_rg-handsonaks_handsonaks_southeastasia/providers/Microsoft.Network/publicIPAddresses/73c5c3ed-caba-4525-9ba5-6943b35b1c05",
+          "resourceGroup": "MC_rg-handsonaks_handsonaks_southeastasia"
+        }
+      ],
+      "idleTimeoutInMinutes": null,
+      "managedOutboundIps": {
+        "count": 1
+      },
+      "outboundIpPrefixes": null,
+      "outboundIps": null
+    },
+    "loadBalancerSku": "Standard",
+    "networkMode": null,
+    "networkPlugin": "kubenet",
+    "networkPolicy": null,
+    "outboundType": "loadBalancer",
+    "podCidr": "10.244.0.0/16",
+    "serviceCidr": "10.0.0.0/16"
+  },
+  "nodeResourceGroup": "MC_rg-handsonaks_handsonaks_southeastasia",
+  "privateFqdn": null,
+  "provisioningState": "Succeeded",
+  "resourceGroup": "rg-handsonaks",
+  "servicePrincipalProfile": {
+    "clientId": "10f884cb-8ab7-4a63-a6b9-306e6649a575"
+  },
+  "sku": {
+    "name": "Basic",
+    "tier": "Free"
+  },
+  "type": "Microsoft.ContainerService/ManagedClusters",
+  "windowsProfile": null
+}
